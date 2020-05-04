@@ -23,6 +23,7 @@ function draw() {
     }
 
     if (pipes[i].hits(bird)) {
+      score -= 1; // The score still adds one point when hitting a pipe. This removes that faulty point.
       gameOver();
     }
 
@@ -39,8 +40,11 @@ function draw() {
   }
 
   fill(255, 204, 0);
-  text(score, 200, 30);
   textSize(26);
+  text(score, 200, 30);
+  textSize(16);
+  fill(255, 204, 0);
+  text(`High Score: ${getItem('score')}`, 280, 25);
 }
 
 function mouseClicked() {
@@ -48,9 +52,15 @@ function mouseClicked() {
   if (isOver) reset();
 }
 
+function storeHighScore() {
+  if (getItem('score') < score) {
+    storeItem('score', score);
+  }
+}
+
 function gameOver() {
-  score -= 1; // The score still adds one point when hitting a pipe. This removes that faulty point.
   isOver = true;
+  storeHighScore();
   noLoop();
 }
 
