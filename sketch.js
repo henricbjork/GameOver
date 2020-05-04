@@ -12,6 +12,7 @@ function setup() {
 
 function draw() {
   background(0);
+
   for (let i = pipes.length - 1; i >= 0; i--) {
     pipes[i].show();
     pipes[i].update();
@@ -21,6 +22,7 @@ function draw() {
     }
 
     if (pipes[i].hits(bird)) {
+      score -= 1; // The score still adds one point when hitting a pipe. This removes that faulty point.
       gameOver();
     }
 
@@ -35,6 +37,18 @@ function draw() {
   if (frameCount % 100 == 0) {
     pipes.push(new Pipe());
   }
+
+  fill(255, 204, 0);
+  textSize(26);
+  text(score, 200, 30);
+  textSize(16);
+  fill(255, 204, 0);
+
+  // this checks if there exists a highscore in the localstorage
+  // so that it won't return null if there aren't any
+  getItem('score')
+    ? text(`High Score: ${getItem('score')}`, 280, 25)
+    : text(`High Score: 0`, 280, 25);
 }
 
 function mouseClicked() {
@@ -42,8 +56,15 @@ function mouseClicked() {
   if (isOver) reset();
 }
 
+function storeHighScore() {
+  if (getItem('score') < score) {
+    storeItem('score', score);
+  }
+}
+
 function gameOver() {
   isOver = true;
+  storeHighScore();
   noLoop();
 }
 
