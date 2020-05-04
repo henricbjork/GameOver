@@ -19,7 +19,6 @@ function draw() {
 
     if (pipes[i].pass(bird)) {
       score++;
-      console.log(score);
     }
 
     if (pipes[i].hits(bird)) {
@@ -44,7 +43,12 @@ function draw() {
   text(score, 200, 30);
   textSize(16);
   fill(255, 204, 0);
-  text(`High Score: ${getItem('score')}`, 280, 25);
+
+  // this checks if there exists a highscore in the localstorage
+  // so that it won't return null if there aren't any
+  getItem('score')
+    ? text(`High Score: ${getItem('score')}`, 280, 25)
+    : text(`High Score: 0`, 280, 25);
 }
 
 function mouseClicked() {
