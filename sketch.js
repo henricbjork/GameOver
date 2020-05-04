@@ -12,12 +12,14 @@ function setup() {
 
 function draw() {
   background(0);
+
   for (let i = pipes.length - 1; i >= 0; i--) {
     pipes[i].show();
     pipes[i].update();
 
     if (pipes[i].pass(bird)) {
       score++;
+      console.log(score);
     }
 
     if (pipes[i].hits(bird)) {
@@ -35,6 +37,10 @@ function draw() {
   if (frameCount % 100 == 0) {
     pipes.push(new Pipe());
   }
+
+  fill(255, 204, 0);
+  text(score, 200, 30);
+  textSize(26);
 }
 
 function mouseClicked() {
@@ -43,6 +49,7 @@ function mouseClicked() {
 }
 
 function gameOver() {
+  score -= 1; // The score still adds one point when hitting a pipe. This removes that faulty point.
   isOver = true;
   noLoop();
 }
