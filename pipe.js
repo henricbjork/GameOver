@@ -1,10 +1,14 @@
 class Pipe {
   constructor() {
-    this.top = random(height / 2);
-    this.bottom = random(height / 2);
+    let spacing = random(50, height / 4);
+    let centery = random(spacing, height - spacing);
+
+    this.top = centery - spacing / 2;
+    this.bottom = height - (centery + spacing / 2);
     this.x = width;
     this.w = 20;
     this.speed = 2;
+    this.passed = false;
   }
 
   hits(bird) {
@@ -14,6 +18,14 @@ class Pipe {
       }
     }
 
+    return false;
+  }
+
+  pass(bird) {
+    if (bird.x > this.x && !this.passed) {
+      this.passed = true;
+      return true;
+    }
     return false;
   }
 

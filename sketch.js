@@ -1,6 +1,8 @@
 let bird;
 let cnv;
 let pipes = [];
+let score = 0;
+let isOver = false;
 
 function setup() {
   cnv = createCanvas(400, 600);
@@ -14,8 +16,12 @@ function draw() {
     pipes[i].show();
     pipes[i].update();
 
+    if (pipes[i].pass(bird)) {
+      score++;
+    }
+
     if (pipes[i].hits(bird)) {
-      console.log('hit');
+      gameOver();
     }
 
     if (pipes[i].offScreen()) {
@@ -33,4 +39,18 @@ function draw() {
 
 function mouseClicked() {
   bird.up();
+  if (isOver) reset();
+}
+
+function gameOver() {
+  isOver = true;
+  noLoop();
+}
+
+function reset() {
+  isOver = false;
+  score = 0;
+  pipes = [];
+  bird = new Bird();
+  loop();
 }
