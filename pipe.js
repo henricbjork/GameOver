@@ -1,6 +1,6 @@
 class Pipe {
   constructor() {
-    let spacing = random(50, height / 4);
+    let spacing = 100;
     let centery = random(spacing, height - spacing);
 
     this.top = centery - spacing / 2;
