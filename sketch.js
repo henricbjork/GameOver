@@ -7,11 +7,13 @@ let mode; // determines if game has started
 let birdSprite;
 let gameOverImg;
 let resetBtn;
+let startBtn;
 
 function preload() {
   birdSprite = loadImage('graphics/covid.png');
   gameOverImg = loadImage('graphics/gameover.png');
   resetBtn = loadImage('graphics/reset.png');
+  startBtn = loadImage('graphics/start.png');
 }
 
 function setup() {
@@ -22,49 +24,58 @@ function setup() {
 }
 
 function draw() {
-  background(0);
-
-  for (let i = pipes.length - 1; i >= 0; i--) {
-    pipes[i].show();
-    pipes[i].update();
-
-    if (pipes[i].pass(bird)) {
-      score++;
-    }
-
-    if (pipes[i].hits(bird)) {
-      score -= 1; // The score still adds one point when hitting a pipe. This removes that faulty point.
-      gameOver();
-    }
-
-    if (pipes[i].offScreen()) {
-      pipes.splice(i, 1);
-    }
+  if (mode === 0) {
+    background(0);
+    imageMode(CENTER);
+    image(startBtn, width / 2, height / 2, 200, 100);
+    imageMode(CORNER);
   }
 
-  bird.update();
-  bird.show();
+  if (mode === 1) {
+    background(0);
 
-  if (frameCount % 100 == 0) {
-    pipes.push(new Pipe());
+    for (let i = pipes.length - 1; i >= 0; i--) {
+      pipes[i].show();
+      pipes[i].update();
+
+      if (pipes[i].pass(bird)) {
+        score++;
+      }
+
+      if (pipes[i].hits(bird)) {
+        score -= 1; // The score still adds one point when hitting a pipe. This removes that faulty point.
+        gameOver();
+      }
+
+      if (pipes[i].offScreen()) {
+        pipes.splice(i, 1);
+      }
+    }
+
+    bird.update();
+    bird.show();
+
+    if (frameCount % 100 == 0) {
+      pipes.push(new Pipe());
+    }
+
+    fill(255, 204, 0);
+    textSize(26);
+    text(score, 200, 30);
+    textSize(16);
+    fill(255, 204, 0);
+
+    // this checks if there exists a highscore in the localstorage
+    // so that it won't return null if there aren't any
+    getItem('score')
+      ? text(`High Score: ${getItem('score')}`, 280, 25)
+      : text(`High Score: 0`, 280, 25);
   }
-
-  fill(255, 204, 0);
-  textSize(26);
-  text(score, 200, 30);
-  textSize(16);
-  fill(255, 204, 0);
-
-  // this checks if there exists a highscore in the localstorage
-  // so that it won't return null if there aren't any
-  getItem('score')
-    ? text(`High Score: ${getItem('score')}`, 280, 25)
-    : text(`High Score: 0`, 280, 25);
 }
 
 function mouseClicked() {
   bird.up();
-
+  mode = 1;
   if (isOver) reset();
 }
 
