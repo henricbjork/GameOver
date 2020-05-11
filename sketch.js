@@ -4,6 +4,12 @@ let pipes = [];
 let score = 0;
 let isOver = false;
 let mode; // determines if game has started
+var birdSprite;
+
+function preload() {
+  birdSprite = loadImage('graphics/covid.png');
+  // bgImg = loadImage('graphics/background.png');
+}
 
 function setup() {
   mode = 0; //Initially game has not started

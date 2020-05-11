@@ -7,13 +7,20 @@ class Bird {
     this.lift = -10;
     this.velocity = 0;
 
-    this.width = 16;
-    this.height = 16;
+    this.width = 46;
+    this.height = 46;
+
+    this.icon = birdSprite;
   }
 
   show() {
-    fill(255);
-    ellipse(this.x, this.y, 16, 16);
+    image(
+      this.icon,
+      this.x - this.width / 2,
+      this.y - this.height / 2,
+      this.width,
+      this.height
+    );
   }
 
   up() {
