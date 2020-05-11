@@ -4,11 +4,16 @@ let pipes = [];
 let score = 0;
 let isOver = false;
 let mode; // determines if game has started
-var birdSprite;
+let birdSprite;
+let gameOverImg;
+let resetBtn;
+let startBtn;
 
 function preload() {
   birdSprite = loadImage('graphics/covid.png');
-  // bgImg = loadImage('graphics/background.png');
+  gameOverImg = loadImage('graphics/gameover.png');
+  resetBtn = loadImage('graphics/reset.png');
+  startBtn = loadImage('graphics/start.png');
 }
 
 function setup() {
@@ -19,13 +24,11 @@ function setup() {
 }
 
 function draw() {
-  clear();
   if (mode === 0) {
     background(0);
-    rect(50, 120, 300, 300);
-    fill(0);
-    text('Click to start', 165, 260);
-    fill(255);
+    imageMode(CENTER);
+    image(startBtn, width / 2, height / 2, 200, 100);
+    imageMode(CORNER);
   }
 
   if (mode === 1) {
@@ -83,6 +86,7 @@ function storeHighScore() {
 }
 
 function gameOver() {
+  displayGameOver();
   isOver = true;
   storeHighScore();
   noLoop();
@@ -95,3 +99,18 @@ function reset() {
   bird = new Bird();
   loop();
 }
+
+function displayGameOver() {
+  imageMode(CENTER);
+  image(gameOverImg, width / 2, height / 2);
+  image(resetBtn, width / 2, height / 1.4, 80, 50);
+  imageMode(CORNER); // This resets the image mode to default so that the sprite won't be centered
+}
+
+// function displayStartPage() {
+//   background(0);
+//   rect(50, 120, 300, 300);
+//   fill(0);
+//   text('Click to start', 165, 260);
+//   fill(255);
+// }
