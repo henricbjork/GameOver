@@ -10,6 +10,8 @@ let resetBtn;
 let resetBtnY;
 let resetBtnX;
 let startBtn;
+let startBtnY;
+let startBtnX;
 let button;
 
 function preload() {
@@ -26,6 +28,8 @@ function setup() {
   pipes.push(new Pipe());
   resetBtnY = height / 1.4;
   resetBtnX = width / 2;
+  startBtnY = height / 2;
+  startBtnX = width / 2;
 }
 
 function draw() {
@@ -85,8 +89,8 @@ function mouseClicked() {
     isStartButtonClick(
       mouseX,
       mouseY,
-      width / 2 - 100,
-      height / 2 - 50,
+      startBtnX - 100,
+      startBtnY - 50,
       200,
       100
     ) &&
