@@ -82,14 +82,28 @@ function mouseClicked() {
   bird.up();
 
   if (
-    isStartButtonClick(mouseX, mouseY, width / 2, height / 2, 200, 100) &&
+    isStartButtonClick(
+      mouseX,
+      mouseY,
+      width / 2 - 100,
+      height / 2 - 50,
+      200,
+      100
+    ) &&
     isOver === false
   ) {
     mode = 1;
   }
 
   if (
-    isResetButtonClick(mouseX, mouseY, resetBtnX, resetBtnY, 80, 50) &&
+    isResetButtonClick(
+      mouseX,
+      mouseY,
+      resetBtnX - 40,
+      resetBtnY - 25,
+      80,
+      50
+    ) &&
     isOver
   ) {
     reset();
