@@ -80,7 +80,14 @@ function draw() {
 
 function mouseClicked() {
   bird.up();
-  mode = 1;
+
+  if (
+    isStartButtonClick(mouseX, mouseY, width / 2, height / 2, 200, 100) &&
+    isOver === false
+  ) {
+    mode = 1;
+  }
+
   if (
     isResetButtonClick(mouseX, mouseY, resetBtnX, resetBtnY, 80, 50) &&
     isOver
@@ -127,7 +134,7 @@ function isResetButtonClick(x, y, objectX, objectY, objectWidth, objectHeight) {
   );
 }
 
-function isResetButtonClick(x, y, objectX, objectY, objectWidth, objectHeight) {
+function isStartButtonClick(x, y, objectX, objectY, objectWidth, objectHeight) {
   return (
     x >= objectX &&
     x < objectX + objectWidth &&
@@ -135,4 +142,3 @@ function isResetButtonClick(x, y, objectX, objectY, objectWidth, objectHeight) {
     y < objectY + objectHeight
   );
 }
-
