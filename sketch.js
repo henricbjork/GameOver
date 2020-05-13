@@ -7,7 +7,10 @@ let mode; // determines if game has started
 let birdSprite;
 let gameOverImg;
 let resetBtn;
+let resetBtnY;
+let resetBtnX;
 let startBtn;
+let button;
 
 function preload() {
   birdSprite = loadImage('graphics/covid.png');
@@ -21,6 +24,8 @@ function setup() {
   cnv = createCanvas(400, 600);
   bird = new Bird();
   pipes.push(new Pipe());
+  resetBtnY = height / 1.4;
+  resetBtnX = width / 2;
 }
 
 function draw() {
@@ -76,7 +81,12 @@ function draw() {
 function mouseClicked() {
   bird.up();
   mode = 1;
-  if (isOver) reset();
+  if (
+    isResetButtonClick(mouseX, mouseY, resetBtnX, resetBtnY, 80, 50) &&
+    isOver
+  ) {
+    reset();
+  }
 }
 
 function storeHighScore() {
@@ -102,15 +112,27 @@ function reset() {
 
 function displayGameOver() {
   imageMode(CENTER);
+  // button = createImg(resetBtn);
   image(gameOverImg, width / 2, height / 2);
   image(resetBtn, width / 2, height / 1.4, 80, 50);
   imageMode(CORNER); // This resets the image mode to default so that the sprite won't be centered
 }
 
-// function displayStartPage() {
-//   background(0);
-//   rect(50, 120, 300, 300);
-//   fill(0);
-//   text('Click to start', 165, 260);
-//   fill(255);
-// }
+function isResetButtonClick(x, y, objectX, objectY, objectWidth, objectHeight) {
+  return (
+    x >= objectX &&
+    x < objectX + objectWidth &&
+    y >= objectY &&
+    y < objectY + objectHeight
+  );
+}
+
+function isResetButtonClick(x, y, objectX, objectY, objectWidth, objectHeight) {
+  return (
+    x >= objectX &&
+    x < objectX + objectWidth &&
+    y >= objectY &&
+    y < objectY + objectHeight
+  );
+}
+
