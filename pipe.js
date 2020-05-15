@@ -1,19 +1,22 @@
 class Pipe {
   constructor() {
-    let spacing = 100;
-    let centery = random(spacing, height - spacing);
+    this.spacing = 200;
+    this.top = random(height / 6, 3 / 4 * height);
+    this.bottom = this.top + this.spacing;
 
-    this.top = centery - spacing / 2;
-    this.bottom = height - (centery + spacing / 2);
     this.x = width;
-    this.w = 20;
+    this.w = 60;
     this.speed = 2;
+
     this.passed = false;
   }
 
   hits(bird) {
-    if (bird.y < this.top || bird.y > height - this.bottom) {
-      if (bird.x > this.x && bird.x < this.x + this.w) {
+    let halfBirdHeight = bird.height / 2;
+    let halfBirdWidth = bird.width / 2;
+    if (bird.y - halfBirdHeight < this.top || bird.y + halfBirdHeight > this.bottom) {
+      if (bird.x + halfBirdWidth > this.x && bird.x - halfBirdWidth < this.x + this.w) {
+        this.passed = true;
         return true;
       }
     }
@@ -29,10 +32,27 @@ class Pipe {
     return false;
   }
 
+  drawHalf() {
+    let howManyNeeded = 0;
+    let peakRatio = pipePeakSprite.height / pipePeakSprite.width;
+    let bodyRatio = pipeBodySprite.height / pipeBodySprite.width;
+    //this calculates how many pipe we can fit without stretching
+    howManyNeeded = Math.round(height / (this.w * bodyRatio));
+    for (let i = 0; i < howManyNeeded; i++) {
+      let offset = this.w * (i * bodyRatio + peakRatio);
+      image(pipeBodySprite, -this.w / 2, offset, this.w, this.w * bodyRatio)
+    }
+    image(pipePeakSprite, -this.w / 2, 0, this.w, this.w * peakRatio);
+  }
+
   show() {
-    fill(255);
-    rect(this.x, 0, this.w, this.top);
-    rect(this.x, height - this.bottom, this.w, this.bottom);
+    push(); // Start a new drawing state
+    translate(this.x + this.w / 2, this.bottom);
+    this.drawHalf();
+    translate(0, -this.spacing);
+    rotate(PI);
+    this.drawHalf();
+    pop(); // Restore original state
   }
 
   update() {

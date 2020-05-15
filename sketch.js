@@ -1,15 +1,20 @@
 let bird;
 let cnv;
 let pipes = [];
+let parallax = 0.6;
 let score = 0;
 let isOver = false;
 let mode; // determines if game has started
 let birdSprite;
+let pipeBodySprite;
+let pipePeakSprite;
 let gameOverImg;
 let resetBtn;
 let resetBtnY;
 let resetBtnX;
 let startBtn;
+let bgImg;
+let bgX = 0;
 let startBtnY;
 let startBtnX;
 let button;
@@ -19,11 +24,14 @@ function preload() {
   gameOverImg = loadImage('graphics/gameover.png');
   resetBtn = loadImage('graphics/reset.png');
   startBtn = loadImage('graphics/start.png');
+  pipePeakSprite = loadImage('graphics/human.png');
+  pipeBodySprite = loadImage('graphics/human.png');
+  bgImg = loadImage('graphics/background.png')
 }
 
 function setup() {
   mode = 0; //Initially game has not started
-  cnv = createCanvas(400, 600);
+  cnv = createCanvas(400, 700);
   bird = new Bird();
   pipes.push(new Pipe());
   resetBtnY = height / 1.4;
@@ -42,17 +50,19 @@ function draw() {
 
   if (mode === 1) {
     background(0);
+    image(bgImg, bgX, 0, bgImg.width, height);
+    bgX -= parallax;
+    // bgX -= pipes[0].speed * parallax; //pipes.speed undefined
 
     for (let i = pipes.length - 1; i >= 0; i--) {
-      pipes[i].show();
       pipes[i].update();
+      pipes[i].show();
 
       if (pipes[i].pass(bird)) {
         score++;
       }
 
       if (pipes[i].hits(bird)) {
-        score -= 1; // The score still adds one point when hitting a pipe. This removes that faulty point.
         gameOver();
       }
 
@@ -130,6 +140,7 @@ function gameOver() {
 function reset() {
   isOver = false;
   score = 0;
+  bgX = 0;
   pipes = [];
   bird = new Bird();
   loop();
