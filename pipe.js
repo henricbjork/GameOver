@@ -1,6 +1,6 @@
 class Pipe {
   constructor() {
-    this.spacing = 155;
+    this.spacing = 200;
     this.top = random(height / 6, 3 / 4 * height);
     this.bottom = this.top + this.spacing;
 
@@ -46,7 +46,7 @@ class Pipe {
   }
 
   show() {
-    push(); 
+    push(); // Start a new drawing state
     translate(this.x + this.w / 2, this.bottom);
     this.drawHalf();
     translate(0, -this.spacing);
