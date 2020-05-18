@@ -18,15 +18,17 @@ let bgX = 0;
 let startBtnY;
 let startBtnX;
 let button;
+let bgSound;
 
 function preload() {
   birdSprite = loadImage('graphics/covid.png');
   gameOverImg = loadImage('graphics/gameover.png');
   resetBtn = loadImage('graphics/reset.png');
   startBtn = loadImage('graphics/start.png');
-  pipePeakSprite = loadImage('graphics/human.png');
-  pipeBodySprite = loadImage('graphics/human.png');
+  pipePeakSprite = loadImage('graphics/soap.png');
+  pipeBodySprite = loadImage('graphics/soap.png');
   bgImg = loadImage('graphics/background.png')
+  bgSound = loadSound('audio/game_music.mp3');
 }
 
 function setup() {
@@ -52,7 +54,9 @@ function draw() {
     background(0);
     image(bgImg, bgX, 0, bgImg.width, height);
     bgX -= parallax;
-    // bgX -= pipes[0].speed * parallax; //pipes.speed undefined
+    if (!bgSound.isPlaying()) {
+      bgSound.loop();
+    } 
 
     for (let i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
@@ -171,3 +175,5 @@ function isStartButtonClick(x, y, objectX, objectY, objectWidth, objectHeight) {
     y < objectY + objectHeight
   );
 }
+
+
