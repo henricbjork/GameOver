@@ -33,13 +33,17 @@ function preload() {
 
 function setup() {
   mode = 0; //Initially game has not started
+
   cnv = createCanvas(400, 700);
   bird = new Bird();
   pipes.push(new Pipe());
+
   resetBtnY = height / 1.4;
   resetBtnX = width / 2;
   startBtnY = height / 2;
   startBtnX = width / 2;
+
+  synth = new Tone.Synth().toMaster();
 }
 
 function draw() {
@@ -67,6 +71,7 @@ function draw() {
       }
 
       if (pipes[i].hits(bird)) {
+        hitSound();
         gameOver();
       }
 
@@ -98,6 +103,7 @@ function draw() {
 
 function mouseClicked() {
   bird.up();
+  !isOver && flapSound();
 
   if (
     isStartButtonClick(
@@ -176,4 +182,10 @@ function isStartButtonClick(x, y, objectX, objectY, objectWidth, objectHeight) {
   );
 }
 
+function flapSound(time) {
+  synth.triggerAttackRelease('e1', '8n', time);
+}
 
+function hitSound() {
+  synth.triggerAttackRelease('e2', '4n');
+}
