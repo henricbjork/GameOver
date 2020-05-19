@@ -11,15 +11,13 @@ class Pipe {
     this.passed = false;
   }
 
-  hits(birdt) {
-    let birdHeight = bird.height;
-    let birdWidth = bird.width;
+  hits(bird) {
     if (
-      bird.y - birdHeight / 2 < this.top ||
-      bird.y + birdHeight / 2 > this.bottom ||
-      bird.y >= height
+      bird.y - bird.height / 2 < this.top ||
+      bird.y + bird.height / 2 > this.bottom
     ) {
       if (bird.x > this.x && bird.x < this.x + this.w) {
+        this.passed = true;
         return true;
       }
     }
