@@ -11,6 +11,8 @@ class Bird {
     this.height = 46;
 
     this.icon = birdSprite;
+
+    this.fell = false;
   }
 
   show() {
@@ -31,9 +33,10 @@ class Bird {
     this.velocity += this.gravity;
     this.y += this.velocity;
 
-    if (this.y >= height - this.height / 2) {
-      this.y = height - this.height / 2;
+    if (this.y >= height) {
+      this.y = height + this.y;
       this.velocity = 0;
+      this.fell = true;
     }
 
     if (this.y <= this.height / 2) {

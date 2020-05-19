@@ -1,7 +1,7 @@
 class Pipe {
   constructor() {
     this.spacing = 200;
-    this.top = random(height / 6, 3 / 4 * height);
+    this.top = random(height / 6, (3 / 4) * height);
     this.bottom = this.top + this.spacing;
 
     this.x = width;
@@ -11,12 +11,15 @@ class Pipe {
     this.passed = false;
   }
 
-  hits(bird) {
-    let halfBirdHeight = bird.height / 2;
-    let halfBirdWidth = bird.width / 2;
-    if (bird.y - halfBirdHeight < this.top || bird.y + halfBirdHeight > this.bottom) {
-      if (bird.x + halfBirdWidth > this.x && bird.x - halfBirdWidth < this.x + this.w) {
-        this.passed = true;
+  hits(birdt) {
+    let birdHeight = bird.height;
+    let birdWidth = bird.width;
+    if (
+      bird.y - birdHeight / 2 < this.top ||
+      bird.y + birdHeight / 2 > this.bottom ||
+      bird.y >= height
+    ) {
+      if (bird.x > this.x && bird.x < this.x + this.w) {
         return true;
       }
     }
@@ -40,7 +43,7 @@ class Pipe {
     howManyNeeded = Math.round(height / (this.w * bodyRatio));
     for (let i = 0; i < howManyNeeded; i++) {
       let offset = this.w * (i * bodyRatio + peakRatio);
-      image(pipeBodySprite, -this.w / 2, offset, this.w, this.w * bodyRatio)
+      image(pipeBodySprite, -this.w / 2, offset, this.w, this.w * bodyRatio);
     }
     image(pipePeakSprite, -this.w / 2, 0, this.w, this.w * peakRatio);
   }

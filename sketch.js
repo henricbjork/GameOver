@@ -58,9 +58,9 @@ function draw() {
     background(0);
     image(bgImg, bgX, 0, bgImg.width, height);
     bgX -= parallax;
-    if (!bgSound.isPlaying()) {
-      bgSound.loop();
-    }
+    // if (!bgSound.isPlaying()) {
+    //   bgSound.loop();
+    // }
 
     for (let i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
@@ -70,7 +70,7 @@ function draw() {
         score++;
       }
 
-      if (pipes[i].hits(bird)) {
+      if (pipes[i].hits(bird) || bird.fell) {
         hitSound();
         gameOver();
       }
