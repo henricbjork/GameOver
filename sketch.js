@@ -27,7 +27,7 @@ function preload() {
   startBtn = loadImage('graphics/start.png');
   pipePeakSprite = loadImage('graphics/soap.png');
   pipeBodySprite = loadImage('graphics/soap.png');
-  bgImg = loadImage('graphics/background.png')
+  bgImg = loadImage('graphics/background.png');
   bgSound = loadSound('audio/game_music.mp3');
 }
 
@@ -60,7 +60,7 @@ function draw() {
     bgX -= parallax;
     if (!bgSound.isPlaying()) {
       bgSound.loop();
-    } 
+    }
 
     for (let i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
@@ -103,7 +103,6 @@ function draw() {
 
 function mouseClicked() {
   bird.up();
-  !isOver && flapSound();
 
   if (
     isStartButtonClick(
@@ -180,10 +179,6 @@ function isStartButtonClick(x, y, objectX, objectY, objectWidth, objectHeight) {
     y >= objectY &&
     y < objectY + objectHeight
   );
-}
-
-function flapSound(time) {
-  synth.triggerAttackRelease('e1', '8n', time);
 }
 
 function hitSound() {
