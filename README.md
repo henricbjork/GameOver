@@ -1,5 +1,11 @@
 # Flappi byrd
 
+ <img src="game.png#thumbnail" alt="game view"
+	title="A cute kitten" />
+
+<img src="over.png#thumbnail" alt="gameover"
+	title="A cute kitten" />
+
 LIVE :video_game:
 Test out the game ()
 
