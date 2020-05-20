@@ -19,6 +19,7 @@ let startBtnY;
 let startBtnX;
 let button;
 let bgSound;
+let playerAlive = true;
 
 function preload() {
   birdSprite = loadImage('graphics/covid.png');
@@ -32,11 +33,10 @@ function preload() {
 }
 
 function setup() {
-  mode = 0; //Initially game has not started
+  mode = 0; // Initially game has not started
 
   cnv = createCanvas(400, 700);
   bird = new Bird();
-  pipes.push(new Pipe());
 
   resetBtnY = height / 1.4;
   resetBtnX = width / 2;
@@ -58,21 +58,22 @@ function draw() {
     background(0);
     image(bgImg, bgX, 0, bgImg.width, height);
     bgX -= parallax;
-    // if (!bgSound.isPlaying()) {
-    //   bgSound.loop();
-    // }
+    if (!bgSound.isPlaying()) {
+      bgSound.loop();
+    }
 
     for (let i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
       pipes[i].show();
 
-      if (pipes[i].pass(bird)) {
-        score++;
-      }
-
       if (pipes[i].hits(bird) || bird.fell) {
+        playerAlive = false;
         hitSound();
         gameOver();
+      }
+
+      if (pipes[i].pass(bird) && playerAlive) {
+        score++;
       }
 
       if (pipes[i].offScreen()) {
@@ -157,7 +158,6 @@ function reset() {
 
 function displayGameOver() {
   imageMode(CENTER);
-  // button = createImg(resetBtn);
   image(gameOverImg, width / 2, height / 2);
   image(resetBtn, width / 2, height / 1.4, 80, 50);
   imageMode(CORNER); // This resets the image mode to default so that the sprite won't be centered

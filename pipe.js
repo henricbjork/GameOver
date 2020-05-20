@@ -1,6 +1,6 @@
 class Pipe {
   constructor() {
-    this.spacing = 200;
+    this.spacing = 150;
     this.top = random(height / 6, (3 / 4) * height);
     this.bottom = this.top + this.spacing;
 
@@ -26,7 +26,7 @@ class Pipe {
   }
 
   pass(bird) {
-    if (bird.x > this.x && !this.passed) {
+    if (bird.x === this.x) {
       this.passed = true;
       return true;
     }
