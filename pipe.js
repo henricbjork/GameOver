@@ -26,7 +26,7 @@ class Pipe {
   }
 
   pass(bird) {
-    if (bird.x > this.x && !this.passed) {
+    if (bird.x === this.x) {
       this.passed = true;
       return true;
     }
