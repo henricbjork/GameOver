@@ -33,7 +33,7 @@ function preload() {
 }
 
 function setup() {
-  mode = 0; //Initially game has not started
+  mode = 0; // Initially game has not started
 
   cnv = createCanvas(400, 700);
   bird = new Bird();
@@ -58,9 +58,9 @@ function draw() {
     background(0);
     image(bgImg, bgX, 0, bgImg.width, height);
     bgX -= parallax;
-    // if (!bgSound.isPlaying()) {
-    //   bgSound.loop();
-    // }
+    if (!bgSound.isPlaying()) {
+      bgSound.loop();
+    }
 
     for (let i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
@@ -158,7 +158,6 @@ function reset() {
 
 function displayGameOver() {
   imageMode(CENTER);
-  // button = createImg(resetBtn);
   image(gameOverImg, width / 2, height / 2);
   image(resetBtn, width / 2, height / 1.4, 80, 50);
   imageMode(CORNER); // This resets the image mode to default so that the sprite won't be centered
