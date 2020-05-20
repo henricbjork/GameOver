@@ -36,7 +36,6 @@ function setup() {
 
   cnv = createCanvas(400, 700);
   bird = new Bird();
-  pipes.push(new Pipe());
 
   resetBtnY = height / 1.4;
   resetBtnX = width / 2;
@@ -84,6 +83,8 @@ function draw() {
     bird.show();
 
     if (frameCount % 100 == 0) {
+      console.log(frameCount);
+
       pipes.push(new Pipe());
     }
 
