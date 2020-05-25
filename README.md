@@ -24,6 +24,9 @@ You'll find past pull request [here](https://github.com/Juljulia/GameOver/blob/m
 ## Testers 
 * Maja Granberg
 * Hampus Classon
+* Lisa Benderius
+* Lina Maréchal
+* [Maja Alin](https://github.com/majaalin)
 
 ### Code review 
 by [Bernhard Stedt](https://github.com/Vehx) and [Marcus Augustsson](https://github.com/MarcusIsCode)
