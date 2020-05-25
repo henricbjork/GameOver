@@ -19,7 +19,6 @@ let startBtnY;
 let startBtnX;
 let button;
 let bgSound;
-let playerAlive = true;
 
 function preload() {
   birdSprite = loadImage('graphics/covid.png');
@@ -66,12 +65,17 @@ function draw() {
       pipes[i].update();
       pipes[i].show();
 
-      if (pipes[i].hits(bird) || bird.fell) {
+      if (bird.fell) {
+        gameOver();
+      }
+
+      if (pipes[i].hits(bird)) {
+        score -= 1; 
         hitSound();
         gameOver();
       }
 
-      if (pipes[i].pass(bird) && playerAlive) {
+      if (pipes[i].pass(bird)) {
         score++;
       }
 
