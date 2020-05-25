@@ -1,5 +1,10 @@
 # Pull request Log
 
+* [#17 Update README.md](https://github.com/henricbjork/GameOver/pull/17)
+* [#16 Separated gameover logic](https://github.com/henricbjork/GameOver/pull/16)
+* [#15 Score count logic](https://github.com/henricbjork/GameOver/pull/15)
+* [#14 Score bug](https://github.com/henricbjork/GameOver/pull/14)
+* [#13 Readme & PR log](https://github.com/henricbjork/GameOver/pull/13)
 * [#12 Collision](https://github.com/henricbjork/GameOver/pull/12)
 * [#11 Tone.js](https://github.com/henricbjork/GameOver/pull/11)
 * [#10 Background Sound and pipe image](https://github.com/henricbjork/GameOver/pull/10)
