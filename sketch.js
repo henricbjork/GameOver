@@ -70,7 +70,7 @@ function draw() {
       }
 
       if (pipes[i].hits(bird)) {
-        score -= 1;
+        score -= 1; 
         hitSound();
         gameOver();
       }
@@ -144,14 +144,16 @@ function storeHighScore() {
 }
 
 function gameOver() {
-  displayGameOver();
+  playerAlive = false;
   isOver = true;
+  displayGameOver();
   storeHighScore();
   noLoop();
 }
 
 function reset() {
   isOver = false;
+  playerAlive = true;
   score = 0;
   bgX = 0;
   pipes = [];
