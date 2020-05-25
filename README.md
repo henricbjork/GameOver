@@ -1,10 +1,15 @@
-# Flappi byrd
+<img src="https://media.giphy.com/media/xrDdo5kuHzwxG/source.gif" width="100%">
+
+# Flappy Covid
+
+> Flappy Covid is a Flappy Bird clone made in P5.js. The rules are simple. The objective is to direct a flying corona virus, who moves continuously to the right, between sets of pipes of soap. If the player touches the soap, they lose. If the screen is not tapped, the virus falls because of gravity; each pair of pipes that it navigates between earns the player a single point. On mobile you can tap and on desktop you click the left mouse button to jump.
 
 
-<img src="/graphics/game.png" alt="game overview" width="275px" height="425px" />
+LIVE :video_game: <br>
+Test out the game [here](https://flappycovid.netlify.app/)
 
-LIVE :video_game:
-Test out the game ()
+# Preview
+<img src="/graphics/game.png" alt="game overview" width="450px" />
 
 ## Installation
 ##### Clone this repo 
@@ -17,8 +22,8 @@ Test out the game ()
 You'll find past pull request [here](https://github.com/Juljulia/GameOver/blob/master/PULLREQUESTLOG.md)
 
 ## Testers 
-*
-*
+* Maja Granberg
+* Hampus Classon
 
 ### Code review 
 by [Bernhard Stedt](https://github.com/Vehx) and [Marcus Augustsson](https://github.com/MarcusIsCode)
