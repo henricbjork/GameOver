@@ -1,5 +1,8 @@
 # Pull request Log
 
+* [#20 Codereview](https://github.com/henricbjork/GameOver/pull/20)
+* [#19 Update PR log](https://github.com/henricbjork/GameOver/pull/19)
+* [#18 Update README.md](https://github.com/henricbjork/GameOver/pull/18)
 * [#17 Update README.md](https://github.com/henricbjork/GameOver/pull/17)
 * [#16 Separated gameover logic](https://github.com/henricbjork/GameOver/pull/16)
 * [#15 Score count logic](https://github.com/henricbjork/GameOver/pull/15)
